@@ -4,7 +4,7 @@ function light_on (number_leds: number, red: number, green: number, blue: number
         return_val = pins.spiWrite(green)
         return_val = pins.spiWrite(blue)
     }
-    // WS2801 needs 500 micro seconds between flushes
+    // Restart from first led index (flush)
     control.waitMicros(500)
 }
 let led_count = 0
