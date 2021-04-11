@@ -1,23 +1,20 @@
-function allume () {
-    for (let index = 0; index < led_count; index++) {
-        pins.spiWrite(color[0])
-pins.spiWrite(color[1])
-pins.spiWrite(color[2])
+function light_on (number_leds: number, red: number, green: number, blue: number) {
+    for (let index = 0; index < number_leds; index++) {
+        pins.spiWrite(red)
+pins.spiWrite(green)
+pins.spiWrite(blue)
     }
     control.waitMicros(500)
 }
 let led_count = 0
-let color : number[] = []
 pins.spiFrequency(1000000)
 pins.spiFormat(8, 3)
-led_count = 10
 basic.forever(function () {
-    color = [5, 5, 5]
-    allume()
+    led_count = 5
+    light_on(led_count, 5, 0, 0)
     basic.clearScreen()
     basic.pause(1000)
-    color = [8, 8, 8]
-    allume()
+    light_on(led_count, 0, 0, 5)
     basic.showIcon(IconNames.Heart)
     basic.pause(1000)
 })
